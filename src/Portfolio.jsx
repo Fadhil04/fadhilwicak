@@ -1,41 +1,30 @@
+import { data } from "autoprefixer";
 import { useEffect, useRef, useState } from "react";
 
 // ---------- STATIC / NON-TRANSLATABLE DATA ----------
 
-const expertiseBase = [
-  { icon: "</>" },
-  { icon: "▣" },
-  { icon: "✓" },
-];
+const expertiseBase = [{ icon: "</>" }, { icon: "▣" }, { icon: "✓" }];
 
 const projectsBase = [
   {
     cat: "coding",
-    tag: "AI · FULLSTACK",
-    thumb: "Nutrify",
+    tag: "Fullstack",
+    thumb: "POS Seblak Cinta Bunda",
+    image: "/projects/pos.jpg",
     tone: "from-[#E8F1E4] to-[#D7E8CF]",
     darkTone: "from-[#243626] to-[#1B2A1D]",
+    githubUrl: "https://github.com/Fadhil04/pos-seblak.git",
+    demoUrl: "https://github.com/Fadhil04/pos-seblak.git",
   },
   {
     cat: "coding",
-    tag: "BACKEND",
-    thumb: "Bookshelf",
+    tag: "Fullstack",
+    thumb: "KosKu",
+    image: "/projects/kosku.jpg",
     tone: "from-[#F1E9DC] to-[#E6D6BC]",
     darkTone: "from-[#332C1E] to-[#241F15]",
-  },
-  {
-    cat: "coding",
-    tag: "FULLSTACK",
-    thumb: "E-Market",
-    tone: "from-[#E4E8F1] to-[#CBD5E8]",
-    darkTone: "from-[#1E2433] to-[#161B26]",
-  },
-  {
-    cat: "design",
-    tag: "DESIGN",
-    thumb: "UI Kit",
-    tone: "from-[#F1E9DC] to-[#E6D6BC]",
-    darkTone: "from-[#332C1E] to-[#241F15]",
+    githubUrl: "https://github.com/Fadhil04/kosku-api.git",
+    demoUrl: "https://github.com/Fadhil04/kosku-api.git",
   },
 ];
 
@@ -44,19 +33,46 @@ const skills = [
   "Node.js",
   "Express / Hapi",
   "Tailwind CSS",
-  "Figma",
+  "MySQL / PostgreSQL",
+  "MongoDB",
+  "Python (Data)",
   "Postman / API Testing",
   "Selenium / Automation QA",
-  "MySQL / MongoDB",
   "Git & GitHub",
 ];
 
 const socialLinks = [
-  { label: "GitHub", short: "GH" },
-  { label: "LinkedIn", short: "in" },
-  { label: "Email", short: "@" },
-  { label: "Spotify", short: "♪" },
+  { label: "GitHub", icon: "github", href: "https://github.com/Fadhil04" },
+  { label: "LinkedIn", icon: "linkedin", href: "https://www.linkedin.com/in/fadhil-wicaksono-740686291" },
+  { label: "Email", icon: "email", href: "mailto:mailto:fadhilwicaksono425@gmail.com" },
 ];
+
+// Small inline icon set (currentColor-based so it follows the hover text color)
+function SocialIcon({ type }) {
+  const common = { width: 18, height: 18, viewBox: "0 0 24 24", fill: "currentColor" };
+  switch (type) {
+    case "github":
+      return (
+        <svg {...common} aria-hidden="true">
+          <path d="M12 .5C5.73.5.5 5.73.5 12.03c0 5.05 3.29 9.33 7.86 10.85.57.11.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.47.11-3.07 0 0 .97-.31 3.18 1.18a10.9 10.9 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.6.24 2.78.12 3.07.74.8 1.18 1.83 1.18 3.09 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .3.2.66.79.55A10.53 10.53 0 0 0 23.5 12.03C23.5 5.73 18.27.5 12 .5Z" />
+        </svg>
+      );
+    case "linkedin":
+      return (
+        <svg {...common} aria-hidden="true">
+          <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.15 1.45-2.15 2.94v5.66H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z" />
+        </svg>
+      );
+    case "email":
+      return (
+        <svg {...common} aria-hidden="true">
+          <path d="M3 5.5h18a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1Zm.9 1.7 7.62 5.94a.8.8 0 0 0 .96 0L20.1 7.2H3.9Zm16.6 1.35-6.98 5.44a2.4 2.4 0 0 1-2.94 0L3.6 8.55v8.45h16.9V8.55Z" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
 
 // ---------- TRANSLATIONS ----------
 
@@ -79,27 +95,27 @@ const content = {
       toEnglish: "Switch to English",
     },
     hero: {
-      badge: "👋 Currently turning bug reports into changelog entries",
-      roleLabel: "Informatics @ Gunadarma University",
-      headlinePre: "I'm Iqbal — I write code that survives real users,",
-      headlineItalic: "then I break it on purpose",
-      headlinePost: "before they do.",
-      bio: "I split my attention between three things that don't usually sit in one head: shipping fullstack features, designing interfaces that don't need a manual, and writing the test cases nobody wants to write but everybody's glad exist.",
-      ctaWork: "See the work →",
+      badge: "👋 Currently learning by building real projects",
+      roleLabel: "Information System @ Gunadarma University",
+      headlinePre:
+        "I'm Fadhil, a Computer Science student who learns best by turning lines of code into projects that actually work,",
+      headlineItalic: "poking holes in my own work first",
+      headlinePost: "so I'm the one who learns from them.",
+      bio: "I'm still a student, and I split my curiosity between three things that don't usually sit in one head: building fullstack features from front to back, exploring how data is structured and moved, and writing the test cases that catch what I missed. Always looking for opportunities to learn, contribute, and grow.",
+      ctaWork: "See what I've built →",
       ctaResume: "Resume ↗",
-      stats: ["Years Learning", "Projects Shipped", "Test Coverage Mindset"],
     },
     expertiseSection: {
       tag: "About Me",
-      heading: "Three roles, one brain",
+      heading: "Three interests, one curious mind",
       items: [
         {
-          title: "Fullstack Dev",
-          desc: "I turn Figma frames and API specs into working software — React on the front, Node wherever the front needs backup.",
+          title: "Fullstack Developer",
+          desc: "I like understanding how a feature works end-to-end — React on the front, Node on the back, and everything that connects them in between.",
         },
         {
-          title: "Product Designer",
-          desc: "Wireframes, prototypes, and the occasional argument with myself about button placement — all worked out in Figma before a line of code exists.",
+          title: "Data Engineer",
+          desc: "I'm learning how data gets structured, stored, and moved — from designing schemas to building small pipelines that turn raw data into something usable.",
         },
         {
           title: "QA Engineer",
@@ -109,40 +125,33 @@ const content = {
     },
     projectsSection: {
       tag: "Selected Work",
-      heading: "Projects I'd defend in an interview",
-      filters: { all: "All", coding: "Coding", design: "Design" },
+      heading: "Projects I've learned the most from",
+      filters: { all: "All", coding: "Coding", data: "Data", qa: "QA" },
       seeProject: "See Project ↗",
       github: "GitHub",
       items: [
         {
-          title: "Nutrify Scan",
-          desc: "Point a camera at a meal, get a nutrition breakdown back. Uses AI to log calories and suggest what to eat differently tomorrow.",
+          title: "POS Seblak Cinta Bunda",
+          desc: "A point-of-sale system for a seblak food stall — handles the order queue, calculates the bill, tracks stock, and prints a receipt so the cashier isn't doing it all by hand.",
         },
         {
-          title: "Bookshelf API",
-          desc: "A REST API for managing a book catalog, built on Node.js and Hapi — query the shelf, add a title, and trust the automated test suite to catch what I miss.",
-        },
-        {
-          title: "E-Commerce Market",
-          desc: "A storefront with a working cart, live price math, and a login flow that doesn't fall over — the boring parts of e-commerce, done properly.",
-        },
-        {
-          title: "Mobile Banking Concept",
-          desc: "A prototype exploring what a banking app looks like when accessibility isn't an afterthought — from first wireframe to a clickable Figma flow.",
+          title: "KosKu",
+          desc: "A boarding-house (kos) management app — landlords list rooms and track availability, tenants book and pay rent online, and everyone can see who owes what and when.",
         },
       ],
     },
     skillsSection: {
       tag: "Stack",
-      heading: "What's actually in rotation",
+      heading: "What I'm currently learning and using",
     },
     contactSection: {
-      headingPre: "Got a bug, a project, or just want to talk",
-      headingItalic: "QA strategy?",
-      body: "I read every message — reach out and let's figure out if we should work together.",
+      headingPre: "Got a project, an idea, or just want to talk",
+      headingItalic: "learning and growing together?",
+      body: "I read every message — reach out, I'm always open to opportunities to learn, collaborate, and grow.",
       cta: "Send a message ↗",
     },
-    footer: "© 2026 Iqbal Apriand Juartono. Built with care — and a few automated tests.",
+    footer:
+      "© 2026  Fadhil Wicaksono. Built with care — and a lot of learning along the way.",
   },
 
   id: {
@@ -163,27 +172,27 @@ const content = {
       toEnglish: "Ganti ke Bahasa Inggris",
     },
     hero: {
-      badge: "👋 Lagi sibuk ubah bug report jadi changelog",
+      badge: "👋 Lagi belajar lewat proyek-proyek nyata",
       roleLabel: "Informatika @ Universitas Gunadarma",
-      headlinePre: "Saya Iqbal — saya nulis kode yang tahan dipakai user asli,",
-      headlineItalic: "lalu saya rusak sendiri duluan",
-      headlinePost: "sebelum mereka sempat.",
-      bio: "Perhatian saya kebagi ke tiga hal yang biasanya nggak nyatu di satu kepala: ngerjain fitur fullstack, mendesain antarmuka yang nggak perlu buku panduan, dan nulis test case yang nggak ada yang mau nulis tapi semua orang bersyukur itu ada.",
+      headlinePre:
+        "Saya Fadhil, mahasiswa Informatika yang cepat belajar lewat proyek nyata, yang memiliki ketertarikan terhadap",
+      headlineItalic: "Fullstack Developer, Data Engineer, dan QA Engineer",
+      headlinePost: "",
+      bio: "Saya masih mahasiswa, dan rasa ingin tahu saya kebagi ke tiga hal yang biasanya nggak nyatu di satu kepala: bikin fitur fullstack dari depan sampai belakang, eksplorasi cara data disusun dan dipindahkan, dan nulis test case yang nangkep hal-hal yang saya lewatkan. Selalu terbuka sama kesempatan buat belajar, berkontribusi, dan berkembang.",
       ctaWork: "Lihat Karyanya →",
       ctaResume: "Resume ↗",
-      stats: ["Tahun Belajar", "Proyek Selesai", "Mindset Test Coverage"],
     },
     expertiseSection: {
       tag: "Tentang Saya",
-      heading: "Tiga peran, satu kepala",
+      heading: "Tiga minat, satu rasa ingin tahu",
       items: [
         {
-          title: "Fullstack Dev",
-          desc: "Saya ubah frame Figma dan spek API jadi software yang jalan — React di depan, Node kalau bagian depan butuh bala bantuan.",
+          title: "Fullstack Developer",
+          desc: "Saya suka paham gimana satu fitur jalan dari ujung ke ujung — React di depan, Node di belakang, dan semua yang menghubungkan keduanya.",
         },
         {
-          title: "Product Designer",
-          desc: "Wireframe, prototipe, dan sesekali debat sendiri soal posisi tombol — semua dirampungkan di Figma sebelum satu baris kode pun ditulis.",
+          title: "Data Engineer",
+          desc: "Saya lagi belajar gimana data disusun, disimpan, dan dipindahkan — dari merancang skema sampai bikin pipeline kecil yang mengubah data mentah jadi sesuatu yang berguna.",
         },
         {
           title: "QA Engineer",
@@ -193,40 +202,33 @@ const content = {
     },
     projectsSection: {
       tag: "Karya Pilihan",
-      heading: "Proyek yang berani saya bela saat interview",
-      filters: { all: "Semua", coding: "Coding", design: "Desain" },
+      heading: "Proyek yang paling banyak ngajarin saya",
+      filters: { all: "Semua", coding: "Coding", data: "Data", qa: "QA" },
       seeProject: "Lihat Proyek ↗",
       github: "GitHub",
       items: [
         {
-          title: "Nutrify Scan",
-          desc: "Arahkan kamera ke makanan, langsung dapat rincian nutrisinya. Pakai AI buat mencatat kalori dan menyarankan menu besok.",
+          title: "POS Seblak Cinta Bunda",
+          desc: "Aplikasi kasir (POS) buat warung seblak — kelola antrian pesanan, hitung total belanja, pantau stok bahan, dan cetak struk otomatis biar kasir nggak repot itung manual.",
         },
         {
-          title: "Bookshelf API",
-          desc: "REST API buat mengelola katalog buku, dibangun pakai Node.js dan Hapi — query rak buku, tambah judul, dan percayakan ke automated test suite buat nangkep yang saya lewatkan.",
-        },
-        {
-          title: "E-Commerce Market",
-          desc: "Toko online dengan keranjang yang beneran jalan, hitungan harga real-time, dan alur login yang nggak gampang rubuh — bagian membosankan dari e-commerce, dikerjakan dengan benar.",
-        },
-        {
-          title: "Mobile Banking Concept",
-          desc: "Prototipe yang mengeksplorasi tampilan aplikasi banking kalau aksesibilitas nggak jadi PR belakangan — dari wireframe pertama sampai alur Figma yang bisa diklik.",
+          title: "KosKu",
+          desc: "Aplikasi manajemen kos — pemilik kos bisa daftarin kamar dan pantau ketersediaannya, penyewa bisa booking dan bayar sewa online, dan semua bisa lihat siapa yang belum bayar dan kapan jatuh temponya.",
         },
       ],
     },
     skillsSection: {
       tag: "Perkakas",
-      heading: "Yang beneran sering dipakai",
+      heading: "Yang lagi saya pelajari dan pakai",
     },
     contactSection: {
-      headingPre: "Ada bug, proyek, atau cuma mau ngobrolin",
-      headingItalic: "strategi QA?",
-      body: "Saya baca setiap pesan — hubungi saja dan kita cari tahu apa kita cocok kerja bareng.",
+      headingPre: "Ada proyek, ide, atau cuma mau ngobrolin soal",
+      headingItalic: "belajar dan berkembang bareng?",
+      body: "Saya baca setiap pesan — hubungi saja, saya selalu terbuka sama kesempatan buat belajar, kolaborasi, dan berkembang.",
       cta: "Kirim Pesan ↗",
     },
-    footer: "© 2026 Iqbal Apriand Juartono. Dibuat dengan hati-hati — dan beberapa automated test.",
+    footer:
+      "© 2026 Fadhil Wicaksono. Dibuat dengan hati-hati — dan banyak proses belajar di sepanjang jalan.",
   },
 };
 
@@ -245,7 +247,7 @@ function useReveal() {
           observer.unobserve(el);
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -295,7 +297,7 @@ export default function Portfolio() {
           if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
-      { rootMargin: "-40% 0px -50% 0px" }
+      { rootMargin: "-40% 0px -50% 0px" },
     );
     ["about", "expertise", "projects", "skills", "contact"].forEach((id) => {
       const el = document.getElementById(id);
@@ -494,11 +496,13 @@ export default function Portfolio() {
               {socialLinks.map((s) => (
                 <a
                   key={s.label}
-                  href="#"
+                  href={s.href}
+                  target={s.href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel={s.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
                   aria-label={s.label}
                   className={`w-10 h-10 rounded-full border ${t.border} flex items-center justify-center hover:bg-ink hover:text-white hover:border-ink transition-all ${focusRing}`}
                 >
-                  {s.short}
+                  <SocialIcon type={s.icon} />
                 </a>
               ))}
             </div>
@@ -537,24 +541,6 @@ export default function Portfolio() {
           </div>
         </div>
 
-        <div
-          className={`flex justify-center gap-16 flex-wrap pt-10 mt-8 border-t ${t.border}`}
-        >
-          {[
-            ["3+", c.hero.stats[0]],
-            ["6", c.hero.stats[1]],
-            ["100%", c.hero.stats[2]],
-          ].map(([num, label]) => (
-            <div key={label} className="text-center">
-              <div className="font-serif italic text-[42px]">{num}</div>
-              <div
-                className={`font-mono text-[11px] tracking-[0.08em] ${t.textMuted} uppercase mt-1`}
-              >
-                {label}
-              </div>
-            </div>
-          ))}
-        </div>
       </section>
 
       {/* EXPERTISE */}
@@ -579,7 +565,9 @@ export default function Portfolio() {
           {expertise.map((item, i) => (
             <div
               key={item.title}
-              style={{ transitionDelay: expertiseVisible ? `${i * 80}ms` : "0ms" }}
+              style={{
+                transitionDelay: expertiseVisible ? `${i * 80}ms` : "0ms",
+              }}
               className={`${t.surface} border rounded-[18px] p-8 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-18px_rgba(18,19,15,0.15)] transition-all duration-500`}
             >
               <div
@@ -618,7 +606,7 @@ export default function Portfolio() {
         </div>
 
         <div className="flex justify-center gap-2 mb-11">
-          {["all", "coding", "design"].map((f) => (
+          {["all", "coding", "data","qa"].map((f) => (
             <button
               key={f}
               onClick={() => handleFilterChange(f)}
@@ -641,12 +629,22 @@ export default function Portfolio() {
               key={p.title}
               className={`${t.surface} border rounded-[18px] overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-18px_rgba(18,19,15,0.15)] transition-all duration-300`}
             >
-              <div
-                className={`h-[180px] relative flex items-center justify-center font-serif italic text-2xl bg-gradient-to-br ${
-                  dark ? p.darkTone + " text-white/20" : p.tone + " text-ink/30"
-                }`}
-              >
-                {p.thumb}
+              <div className="h-[180px] relative overflow-hidden">
+                {p.image ? (
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    className="w-full h-full object-cover object-center"
+                  />
+                ) : (
+                  <div
+                    className={`h-full flex items-center justify-center font-serif italic text-2xl bg-gradient-to-br ${
+                      dark ? p.darkTone + " text-white/20" : p.tone + " text-ink/30"
+                    }`}
+                  >
+                    {p.thumb}
+                  </div>
+                )}
                 <span
                   className={`absolute top-3.5 right-3.5 ${t.surfaceSolid} border ${t.border} font-mono not-italic text-[11px] px-2.5 py-1 rounded-full`}
                 >
@@ -657,15 +655,27 @@ export default function Portfolio() {
                 <h3 className="font-display text-[16px] font-semibold mb-2">
                   {p.title}
                 </h3>
-                <p className={`text-[13.8px] ${t.textMuted} leading-relaxed mb-4`}>
+                <p
+                  className={`text-[13.8px] ${t.textMuted} leading-relaxed mb-4`}
+                >
                   {p.desc}
                 </p>
                 <div className="flex gap-4 text-[13px] font-medium">
-                  <a href="#" className={`hover:underline ${focusRing}`}>
+                  <a
+                    href={p.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`hover:underline ${focusRing}`}
+                  >
                     {c.projectsSection.seeProject}
                   </a>
                   {p.cat === "coding" && (
-                    <a href="#" className={`hover:underline ${focusRing}`}>
+                    <a
+                      href={p.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`hover:underline ${focusRing}`}
+                    >
                       {c.projectsSection.github}
                     </a>
                   )}
@@ -681,7 +691,9 @@ export default function Portfolio() {
         id="skills"
         ref={skillsRef}
         className={`max-w-[1180px] mx-auto px-6 py-24 transition-all duration-700 ${
-          skillsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+          skillsVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-6"
         }`}
       >
         <div className="text-center mb-14">
@@ -710,7 +722,9 @@ export default function Portfolio() {
         id="contact"
         ref={contactRef}
         className={`max-w-[1180px] mx-auto px-6 py-24 transition-all duration-700 ${
-          contactVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+          contactVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-6"
         }`}
       >
         <div className="bg-ink text-white rounded-[36px] px-10 py-16 text-center">
@@ -724,7 +738,7 @@ export default function Portfolio() {
             {c.contactSection.body}
           </p>
           <a
-            href="mailto:hello@iqbalapriand.my.id"
+            href="mailto:fadhilwicaksono425@gmail.com"
             className={`bg-white text-ink px-6 py-3.5 rounded-full text-[14.5px] font-medium inline-flex items-center gap-2 ${focusRing}`}
           >
             {c.contactSection.cta}
