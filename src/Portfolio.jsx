@@ -29,15 +29,22 @@ const projectsBase = [
 ];
 
 const skills = [
+  "HTML",
+  "CSS",
+  "Java Script",
+  "PHP",
+  "Golang",
   "React.js",
   "Node.js",
-  "Express / Hapi",
+  "Express.js",
+  "Laravel",
   "Tailwind CSS",
+  "Bootstrap",
   "MySQL / PostgreSQL",
   "MongoDB",
-  "Python (Data)",
+  "Python",
   "Postman / API Testing",
-  "Selenium / Automation QA",
+  "Selenium",
   "Git & GitHub",
 ];
 
@@ -96,11 +103,11 @@ const content = {
     },
     hero: {
       badge: "👋 Currently learning by building real projects",
-      roleLabel: "Information System @ Gunadarma University",
+      roleLabel: "Information Systems @ Gunadarma University",
       headlinePre:
-        "I'm Fadhil, a Computer Science student who learns best by turning lines of code into projects that actually work,",
-      headlineItalic: "poking holes in my own work first",
-      headlinePost: "so I'm the one who learns from them.",
+        "I'm Fadhil, an Information Systems student who learns quickly through real projects, with an interest in",
+      headlineItalic: "Fullstack Development, Data Engineering, and QA Engineering",
+      headlinePost: "",
       bio: "I'm still a student, and I split my curiosity between three things that don't usually sit in one head: building fullstack features from front to back, exploring how data is structured and moved, and writing the test cases that catch what I missed. Always looking for opportunities to learn, contribute, and grow.",
       ctaWork: "See what I've built →",
       ctaResume: "Resume ↗",
@@ -151,7 +158,7 @@ const content = {
       cta: "Send a message ↗",
     },
     footer:
-      "© 2026  Fadhil Wicaksono. Built with care — and a lot of learning along the way.",
+      "© 2026 Fadhil Wicaksono. Built with care — and a lot of learning along the way.",
   },
 
   id: {
@@ -173,13 +180,13 @@ const content = {
     },
     hero: {
       badge: "👋 Lagi belajar lewat proyek-proyek nyata",
-      roleLabel: "Informatika @ Universitas Gunadarma",
+      roleLabel: "Sistem Informasi @ Universitas Gunadarma",
       headlinePre:
-        "Saya Fadhil, mahasiswa Informatika yang cepat belajar lewat proyek nyata, yang memiliki ketertarikan terhadap",
+        "Saya Fadhil, mahasiswa Sistem Informasi yang cepat belajar lewat proyek nyata, yang memiliki ketertarikan terhadap",
       headlineItalic: "Fullstack Developer, Data Engineer, dan QA Engineer",
       headlinePost: "",
       bio: "Saya masih mahasiswa, dan rasa ingin tahu saya kebagi ke tiga hal yang biasanya nggak nyatu di satu kepala: bikin fitur fullstack dari depan sampai belakang, eksplorasi cara data disusun dan dipindahkan, dan nulis test case yang nangkep hal-hal yang saya lewatkan. Selalu terbuka sama kesempatan buat belajar, berkontribusi, dan berkembang.",
-      ctaWork: "Lihat Karyanya →",
+      ctaWork: "Lihat Karyaku →",
       ctaResume: "Resume ↗",
     },
     expertiseSection: {
@@ -448,21 +455,15 @@ export default function Portfolio() {
       )}
 
       {/* HERO */}
-      <section id="about" className="max-w-[1180px] mx-auto px-6 pt-16 pb-10">
-        <div className="flex justify-center">
-          <div className="inline-flex items-center gap-2 bg-sage text-sageink px-4 py-2 rounded-full text-[13px] mb-8 w-fit font-medium">
-            {c.hero.badge}
-          </div>
-        </div>
-
-        <div className="grid md:grid-cols-[1.15fr_0.85fr] gap-14 items-center text-center md:text-left">
+      <section id="about" className="max-w-[1180px] mx-auto px-6 pt-10 pb-10">
+        <div className="grid md:grid-cols-[1.15fr_0.85fr] gap-10 items-center text-center md:text-left">
           <div>
             <p
-              className={`text-[14px] ${t.textMuted} mb-4 uppercase tracking-[0.14em] font-display font-semibold`}
+              className={`text-[12px] ${t.textMuted} mb-3 uppercase tracking-[0.14em] font-display font-semibold`}
             >
               {c.hero.roleLabel}
             </p>
-            <h1 className="font-display text-[34px] md:text-[50px] leading-[1.15] font-semibold tracking-tight mb-5">
+            <h1 className="font-display text-[26px] md:text-[36px] leading-[1.2] font-semibold tracking-tight mb-4">
               {c.hero.headlinePre}{" "}
               <span className="font-serif italic font-normal">
                 {c.hero.headlineItalic}
@@ -470,24 +471,24 @@ export default function Portfolio() {
               {c.hero.headlinePost}
             </h1>
             <p
-              className={`${t.textMuted} text-base leading-[1.75] max-w-[520px] mx-auto md:mx-0 mb-8`}
+              className={`${t.textMuted} text-[14px] leading-[1.65] max-w-[520px] mx-auto md:mx-0 mb-6`}
             >
               {c.hero.bio}
             </p>
-            <div className="flex gap-3 flex-wrap justify-center md:justify-start mb-10">
+            <div className="flex gap-3 flex-wrap justify-center md:justify-start mb-6">
               <a
                 href="#projects"
                 onClick={(e) => {
                   e.preventDefault();
                   goTo("projects");
                 }}
-                className={`bg-ink text-white px-6 py-3.5 rounded-full text-[14.5px] font-medium inline-flex items-center gap-2 hover:-translate-y-0.5 transition-transform ${focusRing}`}
+                className={`bg-ink text-white px-5 py-3 rounded-full text-[13.5px] font-medium inline-flex items-center gap-2 hover:-translate-y-0.5 transition-transform ${focusRing}`}
               >
                 {c.hero.ctaWork}
               </a>
               <a
                 href="#"
-                className={`border ${t.border} px-6 py-3.5 rounded-full text-[14.5px] font-medium inline-flex items-center gap-2 hover:${t.chipBg} transition-all ${focusRing}`}
+                className={`border ${t.border} px-5 py-3 rounded-full text-[13.5px] font-medium inline-flex items-center gap-2 hover:${t.chipBg} transition-all ${focusRing}`}
               >
                 {c.hero.ctaResume}
               </a>
@@ -509,11 +510,13 @@ export default function Portfolio() {
           </div>
 
           <div className="relative flex justify-center">
-            <div className="w-[300px] h-[360px] rounded-[28px] bg-gradient-to-br from-[#EFEAE0] to-[#DDD6C6] border border-line shadow-[0_30px_60px_-20px_rgba(18,19,15,0.18)] relative overflow-hidden -rotate-3">
-              <div className="absolute inset-0 flex items-center justify-center font-serif italic text-[120px] text-ink/10">
-                IJ
-              </div>
-            </div>
+            <div className="w-[300px] h-[360px] rounded-[28px] border border-line shadow-[0_30px_60px_-20px_rgba(18,19,15,0.18)] relative overflow-hidden -rotate-3">
+            <img
+              src="foto-rapih.png"
+              alt="Fadhil Wicaksono"
+              className="w-full h-full object-cover"
+            />
+          </div>
             <div
               aria-hidden="true"
               className="absolute w-[42px] h-[42px] rounded-full bg-white border border-line shadow-lg flex items-center justify-center -top-3.5 right-6 rotate-3 text-sm"
